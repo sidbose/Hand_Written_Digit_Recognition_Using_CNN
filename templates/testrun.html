@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The New Test run</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./static/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+
+    body{
+        background-image: url('bgimg.jpg') ;
+        }
+
+#button1 {
+    background-color: #4CAF50;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     }
+
+     #button1:hover {
+    background-color: white;
+    color: black;
+       }
+
+   #button2{
+    background-color: #5c79a5;
+    color: black;
+    padding: 15px 38px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    #button2:hover {
+    background-color: white;
+    color: black;
+       }
+
+
+    .result{
+     height: 400px;
+     width: 400px;
+     border: 10px solid #76d363; 
+     float: right; 
+     margin: 15px; 
+     margin-top:160px;  
+     border-radius: 5px; 
+     cursor: crosshair; 
+     box-shadow: 0 0 200px #829333; 
+     border-radius: 20px 20px; 
+     background-color: white;
+     font-size: 300px;
+     text-align:center;
+     background-color: #e5d2c7;
+       }
+
+</style>
+<body>
+
+<div class="container-fluid">
+  <h1>Hellow World</h1>
+  <div class="row">
+    
+    <div class="col-sm-4" style="background-color:lavender;"><h2>Draw your number</h2>
+    <canvas id="canvas" width="400" height="400" style="border:15px solid; float: left; margin: 70px; margin-top:160px;  border-radius: 5px; cursor: crosshair; box-shadow: 0 0 200px #829333; border-radius: 20px 20px; background-color: white"></canvas></div>
+    
+    <div class="col-sm-4" style="background-color:lavenderblush;"> <div class="d1" style="margin:65px; margin-top:100px;">
+	     <button type="submit" id="button1">Predict</button>
+	     <br> <br> <br> <br> 
+	     <button type="reset" id="button2">Clear</button>
+	     </div></div>
+    
+    <div class="col-sm-4" style="background-color:lavender;"><h2>Prediction</h2><div class="result">9</div></div>
+  </div>
+</div>
+
+</body>
+</html>

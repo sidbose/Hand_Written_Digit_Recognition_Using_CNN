@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Handwritten Digit recognition using CNN</title>
+
+<link rel="stylesheet" href="#">
+
+<style type="text/css">
+
+    body{
+    	background-image: url('{{ url_for('static',filename='bgimg.jpg') }}');
+    	background-repeat: no-repeat;
+
+    }
+
+	.d1 {
+		float: left;
+		padding: 10px;
+	}
+
+    #button1 {
+    background-color: #4CAF50;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     }
+
+     #button1:hover {
+    background-color: white;
+    color: black;
+       }
+
+   #button2{
+    background-color: #5c79a5;
+    color: black;
+    padding: 15px 38px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    #button2:hover {
+    background-color: white;
+    color: black;
+       }
+
+
+    .result{
+     height: 400px;
+     width: 400px;
+     border:10px solid #76d363; 
+     float: right; 
+     margin: 70px; 
+     margin-top:160px;  
+     border-radius: 5px; 
+     cursor: crosshair; 
+     box-shadow: 0 0 200px #829333; 
+     border-radius: 20px 20px; 
+     background-color: white;
+     font-size: 300px;
+     text-align:center;
+     background-color: #e5d2c7;
+     }
+
+    h1{
+      text-align: center;
+      }
+
+</style>
+
+</head>
+
+
+<body>
+	<h1>Handwritten Digit Recognition using Convolutional Neural Networks 
+       
+       <div>
+	   <canvas id="canvas" width="400" height="400" style="border:15px solid #514d4d; float: left; margin: 70px; margin-top:160px;  border-radius: 5px; cursor: crosshair; box-shadow: 0 0 200px #829333; border-radius: 20px 20px; background-color: white"></canvas>
+	   <br> <br> <br> <br> 
+	    <div class="d1" style="margin:65px; margin-top:100px;">
+	     <button type="submit" id="button1">Predict</button>
+	     <br> <br> <br> <br> 
+	     <button type="reset" id="button2">Clear</button>
+	     </div>
+
+	   <div class="result"></div>
+
+	   </div>
+
+	   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+       crossorigin="anonymous"></script>
+
+	    <script src="{{ url_for('static',filename='index.js') }}"></script>
+	    <script type="text/javascript">
+
+	    var canvas = document.querySelector( "#canvas" );
+	    var context = canvas.getContext( "2d" );	
+
+	    // Clear button
+		$("#button2").on( "click", function()
+		{
+			context.clearRect( 0, 0, 280, 280 );
+			context.fillStyle="white";
+			context.fillRect(0,0,canvas.width,canvas.height);
+			$('.result').empty();	
+		});
+	   
+	   	// Call predict method in server
+   		$("#button1").click(function(){
+   			var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+   			console.log($SCRIPT_ROOT);
+   			var canvasObj = document.getElementById("canvas");
+   			var img = canvasObj.toDataURL();
+   			$.ajax({
+   				type: "POST",
+   				url: $SCRIPT_ROOT + "/predict/",
+   				data: img,
+   				success: function(data){
+   					$('.result').text(data.slice(1, -1));
+   				}
+   			});
+   		});
+	   
+	   </script>
+        
+
+</body>
+</html>
