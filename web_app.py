@@ -51,7 +51,8 @@ def predict():
     # convert to a 4D tensor to feed into our model
     x = x.reshape(1, 28, 28, 1)
 
-    # in our computation graph
+    # in our computation graph. Added later as Tensorflow was giving error in heroku production. locally it can be
+    # run with the below prediction code snippet only
     with graph.as_default():
         # perform the prediction
         out = model.predict(x)

@@ -11,5 +11,6 @@ def init():
 
 	# compile and evaluate loaded model
 	loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+	# added this later as having some threading related issue with Tensorflow in heroku
 	graph = tf.get_default_graph()
 	return loaded_model, graph
