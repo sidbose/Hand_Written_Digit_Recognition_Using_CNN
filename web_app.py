@@ -14,9 +14,10 @@ import sys
 import os
 
 import base64
-from model.load import *
 
 sys.path.append(os.path.abspath('./model'))
+
+from load import *
 
 # init flask app
 app = Flask(__name__)
