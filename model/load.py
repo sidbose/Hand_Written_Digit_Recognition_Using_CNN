@@ -1,4 +1,5 @@
 from keras.models import model_from_json
+import tensorflow as tf
 
 def init():
 	json_file = open("./model/model.json", "r")
@@ -10,4 +11,5 @@ def init():
 
 	# compile and evaluate loaded model
 	loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-	return loaded_model
+	graph = tf.get_default_graph()
+	return loaded_model, graph

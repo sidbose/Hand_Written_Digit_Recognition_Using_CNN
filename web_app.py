@@ -23,7 +23,7 @@ from load import *
 app = Flask(__name__)
 
 global model
-model = init()
+model,graph = init()
 
 # decoding an image from base64 into raw representation
 def convertImage(imgData1):
@@ -50,10 +50,19 @@ def predict():
     x = imresize(x, (28, 28))
     # convert to a 4D tensor to feed into our model
     x = x.reshape(1, 28, 28, 1)
-    # perform the prediction
-    out = model.predict(x)
-    response = np.array_str(np.argmax(out, axis=1))
-    return response
+
+    # in our computation graph
+    with graph.as_default():
+        # perform the prediction
+        out = model.predict(x)
+        # convert the response to a string
+        response = np.array_str(np.argmax(out, axis=1))
+        return response
+
+    # # perform the prediction
+    # out = model.predict(x)
+    # response = np.array_str(np.argmax(out, axis=1))
+    # return response
 
 if __name__ == '__main__':
     # decide what port to run the app in
